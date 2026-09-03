@@ -37,7 +37,7 @@ Running my pipeline on 100 sampled CFPB complaints:
 | NLP features | Sentiment Analysis and Key Phrase Extraction (prebuilt, no custom training) |
 | Code | Python (`requests` for API calls, `pandas` for data handling) |
 | Routing logic | Plain Python if/else keyword matching — deterministic and fully auditable |
-| Demo | Streamlit dashboard |
+| Demo | Streamlit dashboard (`app.py`) |
 
 Azure AI Language is used as PaaS (Platform as a Service): Microsoft manages the underlying models and infrastructure, and the project only manages its own application logic and data. No Azure Machine Learning compute, GPU, or paid model deployment is used — every component runs on free tiers.
 
@@ -50,7 +50,10 @@ Standard Azure resource hierarchy: **Subscription → Resource Group → Resourc
 1. Sign in to the Azure Portal with an Azure for Students subscription (free credit, no card required)
 2. Create a Resource Group to hold all project resources
 3. Create an Azure AI Language resource on the Free (F0) tier inside that group
-4. Run `complaint_triage.py`, which fetches sample complaints from the CFPB API and calls Azure AI Language for sentiment and key phrases at no cost
+4. Run `prefetch_data.py` to pull and cache sample complaints from the CFPB API
+5. Run `app.py` to launch the Streamlit triage dashboard, which calls Azure AI Language for sentiment and key phrases at no cost
+
+Sample output from a full run is saved to `complaint_triage_results.csv`.
 
 ## Responsible AI
 
